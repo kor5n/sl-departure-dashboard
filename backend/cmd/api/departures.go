@@ -7,7 +7,6 @@ import (
 	"net/url"
 	"log"
 	"encoding/json"
-	"strconv"
 
 	"github.com/joho/godotenv"
 	"github.com/go-chi/chi/v5"
@@ -18,7 +17,7 @@ type Stop struct {
 	Name string `json:"name"`
 }
 
-func (api *api) StopID(w http.ResponseWriter, r *http.Request){
+func (api *api) Departures(w http.ResponseWriter, r *http.Request){
 	err := godotenv.Load("../../.env")
 	if err != nil{
 		log.Println(".env file couldn't be found")
@@ -26,6 +25,8 @@ func (api *api) StopID(w http.ResponseWriter, r *http.Request){
 	name:= chi.URLParam(r, "name")
 	api_key := os.Getenv("API_KEY") 
 
+
+	//retrieve stop name	
 	if name == ""{
 		http.Error(w, "missing stop name", http.StatusBadRequest)
 		return
@@ -56,18 +57,35 @@ func (api *api) StopID(w http.ResponseWriter, r *http.Request){
 	firstStop := stop_groups[0].(map[string]interface{})
 	stopID := firstStop["id"].(string)
 
-	id, err := strconv.Atoi(stopID)
-	if err != nil {
+	//retrieve departures
+
+	req1 := fmt.Sprintf(
+		"https://realtime-api.trafiklab.se/v1/departures/%s?key=%s",
+		stopID,
+		api_key,
+	)
+
+	resp1,err := http.Get(req1)
+
+	if err != nil{
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	stop := Stop{
-		ID: id,
-		Name: name,
+	defer resp1.Body.Close()
+	
+	var result1 map[string]interface{}
+	error1 := json.NewDecoder(resp1.Body).Decode(&result1)
+	if error1 != nil {
+		http.Error(w, error1.Error(), http.StatusInternalServerError)
+		return
 	}
+
+	departures := result1["departures"].([]interface{})
+
+	fmt.Println(departures)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(resp.StatusCode)
-	json.NewEncoder(w).Encode(stop)
+	json.NewEncoder(w).Encode(departures)
 }
