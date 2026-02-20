@@ -31,9 +31,8 @@ func (api *api) mount() http.Handler{
 	r.Get("/health", api.HealthCheckHandler)
 	r.Get("/departures/{name}", api.Departures)
 	r.Get("/dashboard/{index}", api.GetDashboard)
-	/* TODOr.Delete("/delete-dashboard/{index}", api.DeleteDasboard)
-	r.Patch("/add-dashboard/") a bunch of arguments
-	*/
+	r.Delete("/delete-dashboard/{index}", api.DeleteDasboard)
+	r.Patch("/add-dashboard/", api.AddDashboard)
 	//})
 	return r
 }
