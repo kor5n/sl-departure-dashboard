@@ -4,10 +4,11 @@ import (
 	//"fmt"
 	"encoding/json"
 	"os"
+	"errors"
 )
 
 type db struct{
-	Stop string `json:stop`
+	StopId string `json:stopid`
 	Routes []string `json:routes`
 	Time string `json:time`	
 }
@@ -35,36 +36,38 @@ func ReadDB()([]db, error){
 	return records, err
 }
 
-func WriteToDB(stop string, routes []string, time string){
+func WriteToDB(stopid string, routes []string, time string)(error){
 	newObject := db{
-		Stop: stop,
+		StopId: stopid,
 		Routes: routes,
 		Time: time,
 	}
 
 	records, err := ReadDB()
 	if err != nil{
-		panic(err)
+		return err
 	}
 
 	records = append(records, newObject)
 
 	updatedData, err := json.MarshalIndent(records, "", " ")
 	if err != nil{
-		panic(err)
+		return err
 	}
 
 	os.WriteFile("db.json", updatedData, 0644)
+	return nil
 }
 
-func DeleteFromDB(index int){
+func DeleteFromDB(index int)(error){
 	records, err := ReadDB()
 	if err != nil{
-		panic(err)
+		return err
 	}
 
 	if index < 0 || index >= len(records) {
-		return
+		err := errors.New("wrong index")
+		return err
 	}
 
 	slice := records[:]
@@ -73,13 +76,15 @@ func DeleteFromDB(index int){
 
 	updatedData, err := json.MarshalIndent(records, "", "  ")
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	err = os.WriteFile("db.json", updatedData, 0664)
 	if err != nil {
-		panic(err)
+		return err
 	}
+
+	return nil
 }
 
 func Filter(index int)(db, error){
