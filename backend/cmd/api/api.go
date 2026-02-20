@@ -30,6 +30,10 @@ func (api *api) mount() http.Handler{
 	//r.Route("/v1", func(r chi.Router){
 	r.Get("/health", api.HealthCheckHandler)
 	r.Get("/departures/{name}", api.Departures)
+	r.Get("/dashboard/{index}", api.GetDashboard)
+	/* TODOr.Delete("/delete-dashboard/{index}", api.DeleteDasboard)
+	r.Patch("/add-dashboard/") a bunch of arguments
+	*/
 	//})
 	return r
 }
