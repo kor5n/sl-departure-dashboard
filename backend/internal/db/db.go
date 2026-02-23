@@ -8,9 +8,10 @@ import (
 )
 
 type db struct{
+	Name string `json:name`
 	StopId string `json:stopid`
 	Routes []string `json:routes`
-	Time string `json:time`	
+	Times []string `json:times`	
 }
 
 type EmptyStruct struct{}
@@ -36,11 +37,12 @@ func ReadDB()([]db, error){
 	return records, err
 }
 
-func WriteToDB(stopid string, routes []string, time string)(error){
+func WriteToDB(name string,stopid string, routes []string, times []string)(error){
 	newObject := db{
+		Name: name,
 		StopId: stopid,
 		Routes: routes,
-		Time: time,
+		Times: times,
 	}
 
 	records, err := ReadDB()

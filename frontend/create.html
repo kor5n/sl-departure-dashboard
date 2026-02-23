@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create SL dasboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h2><a href="index.html">Dashboard</a></h2>
+    </header>
+    <main>
+        <div id="create-container">
+            <form action="">
+                <div class="form-buf">
+                    <label class="form-label">Station</label><br>
+                    <input id="station-input" placeholder="Type station name" type="text" />
+                <!--<label class="error-label">Wrongly typed station name</label>-->
+                </div>
+                <div class="form-buf">
+                    <label>Lines</label>
+                    <ul id="dashboard-filter">
+                    <!--fill with found data
+                    e.g.<input type="radio" name="line">205</input>
+                    -->
+                    <input type="checkbox" name="line">205</input>
+                    <input type="checkbox" name="line">6</input>
+                    <input type="checkbox" name="line">76</input>
+                    <input type="checkbox" name="line">75</input>
+                    </ul>
+                </div>
+                <div class="form-buf">
+                    <label>Dates</label>
+                <ul id="time-range">
+                    <div class="date-range">
+                        <input type="checkbox" name="mon">Mon</input>
+                        <input type="time" class="time-input" name="mon">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon">
+                    </div>
+                    <div class="date-range">
+                        <input type="checkbox" name="tue">Tue</input>
+                        <input type="time" class="time-input" name="mon">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon">
+                    </div>
+                    <div class="date-range">
+                        <input type="checkbox" name="wed">Wed</input>
+                        <input type="time" class="time-input" name="mon">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon">
+                    </div>
+                    <div class="date-range">
+                        <input type="checkbox" name="thu">Thu</input>
+                        <input type="time" class="time-input" name="mon">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon">
+                    </div>
+                    <div class="date-range">
+                        <input type="checkbox" name="fri">Fri</input>
+                        <input type="time" class="time-input" name="mon">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon">
+                    </div>
+                    <div class="date-range">
+                        <input type="checkbox" name="sat">Sat</input>
+                        <input type="time" class="time-input" name="mon">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon">
+                    </div>
+                    <div class="date-range">
+                        <input type="checkbox" name="sun">Sun</input>
+                        <input type="time" class="time-input" name="mon">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon">
+                    </div>
+                </ul>
+                </div>
+                
+                
+                
+                <br>
+                <input type="submit" value="Submit" />
+            </form>
+
+        </div>
+    </main>
+</body>
+</html>

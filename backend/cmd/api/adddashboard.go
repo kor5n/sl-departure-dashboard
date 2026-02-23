@@ -7,9 +7,10 @@ import (
 )
 
 type Request struct {
+	Name string `json:name`
     StopId   string   `json:"stopid"`
     Routes []string `json:"routes"`
-    Time   string   `json:"time"`
+    Times   []string   `json:"time"`
 }
 
 
@@ -22,7 +23,7 @@ func (api *api)AddDashboard(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	err = db.WriteToDB(req.StopId, req.Routes, req.Time)
+	err = db.WriteToDB(req.Name,req.StopId, req.Routes, req.Times)
 	if err != nil{
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
