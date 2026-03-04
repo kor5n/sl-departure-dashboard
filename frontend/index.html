@@ -8,13 +8,17 @@
 </head>
 <body>
     <header>
-        <h3>SL Dashboard</h3>
+        <h1>SL Dashboard</h1>
     </header>
     <main>
         <div id="main-container">
-            <button onclick="window.location.assign('create.html')" class="add-dashboard">+</button>
-            <div id="dashboard-container">
-                <button onclick="window.location.assign('dashboard.html')" class="dasboard-button">Ropsten</button>
+            <div class="toggle-container">
+                <h3><a href="dashboard.html">New station</a></h3>
+                <button id="new-station" onclick="window.location.assign('create.html')" class="add-dashboard">+</button>
+            </div>
+            <div onclick="window.location.assign('dashboard.html')" class="toggle-container">
+                <h3>Ropsten</h3>
+                <span class="filter-container"><p class="filter-label">T,34,43,434,34343,4343,dasdasd,dsaasd,dashdkahskdsahkdashdkdhaskdhaskdhsakdhsakhdksahdksahdsakhdsa</p></span>
             </div>
         </div>
         

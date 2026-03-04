@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding:0;
+    text-align: center;
 }
 
 header{
@@ -23,7 +24,7 @@ main{
 #create-container{
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
 }
 
 form{
@@ -40,11 +41,15 @@ form{
 }
 .buf{
     text-align: center;
+    font-size: xx-large;
+
 }
 .date-range{
     display: inline-block;
-    height: fit-content;
-    width: fit-content;
+    height: 8vh;
+    width: 30%;
+    margin-left: 10%;
+    margin-top: 10%;
 }
 a{
     text-decoration: none;
@@ -60,21 +65,115 @@ a{
     border-radius: 4px;
     margin-top: 2%;
     padding: 1%;
+    font-size: 1.5em;
 }
 
 .form-buf{
     margin-bottom: 5%;
 }
 
+.form-label{
+    font-size: 2em;
+}
+
 input{
-    margin: 0;
+    margin-top: 2%;
     padding: 0;
+    font-size: 1.5em;
+}
+
+input[type="checkbox"]{
+    scale: 1.5;
+    margin: 2%;
 }
 
 #time-range{
     margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 label{
     color: dodgerblue;
+}
+
+.line-num{
+    color: black;
+}
+
+.day{
+    color: black;
+    font-size: 1.5em;
+}
+
+#main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.toggle-container{
+    padding: 1%;
+    border: 1px solid black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 8vh;
+    align-items: center;
+}
+
+.filter-label{
+    display: inline-block;
+}
+
+.filter-container{
+    display: inline-block;
+    color: blue;
+    border: 1px solid;
+    width: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-width: 70%;
+    width: 20%;
+    height: max-content;
+ }
+
+.filter-container:hover{
+    width: max-content;
+    overflow-y: visible;
+    height: 100%;
+    word-break: break-all;
+}
+
+#new-station{
+    width: 15%;
+    height: 50%;
+    border: none;
+    background: none;
+    font-size: xx-large;
+}
+
+.date-sep{
+    display: flex;
+    justify-content: space-between;
+}
+
+.selection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="time"]:hover{
+    color: blue;
+    background-color: grey;
+}
+
+input[type="submit"]{
+    background-color: whitesmoke;
+    border: 2px solid darkred;
+    font-size: xx-large;
+    border-radius: 6px;
+    width: 50%;
 }
