@@ -13,8 +13,9 @@ header{
 
 #dashboard-header{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     border: 1px solid;
+    gap: 1rem;
 }
 
 main{
@@ -176,4 +177,31 @@ input[type="submit"]{
     font-size: xx-large;
     border-radius: 6px;
     width: 50%;
+}
+
+.departure{
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
+    align-items: center;
+    border: 1px solid;
+}
+.dest-container{
+    display: flex;
+}
+.line-label, .dest-label{
+    text-align: left;
+}
+.line-label{
+    background-color: red;
+    border-radius: 6px;
+    width: fit-content;
+    margin-right: 5%
+}
+.alerts{
+    width: max-content;
+}
+
+.back-href{
+    color: lightslategrey;
 }

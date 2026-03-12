@@ -32,7 +32,7 @@ func (api *api) mount() http.Handler{
 	r.Get("/departures/{name}", api.Departures)
 	r.Get("/dashboard/{index}", api.GetDashboard)
 	r.Delete("/delete-dashboard/{index}", api.DeleteDasboard)
-	r.Patch("/add-dashboard/", api.AddDashboard)
+	r.Post("/add-dashboard/", api.AddDashboard)
 	//})
 	return r
 }
