@@ -23,49 +23,20 @@ type Stop struct {
 	Stop string `json:"stop"`
 	Alerts []interface{} `json:"alerts"`
 }
-
 func (api *api) Departures(w http.ResponseWriter, r *http.Request){
+
+	//get api key from .env
 	err := godotenv.Load("../../.env")
 	if err != nil{
 		log.Println(".env file couldn't be found")
 	}
-	name:= chi.URLParam(r, "name")
-	api_key := os.Getenv("API_KEY") 
+	api_key := os.Getenv("API_KEY")
+
+	//get id from database
 
 
-	//retrieve stop name	
-	if name == ""{
-		http.Error(w, "missing stop name", http.StatusBadRequest)
-		return
-	}
 
-	req := fmt.Sprintf(
-		"https://realtime-api.trafiklab.se/v1/stops/name/%s?key=%s",
-		url.PathEscape(name),
-		api_key,
-	) 
-
-	resp, err := http.Get(req)
-	if err != nil{
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	defer resp.Body.Close()
-
-	var result map[string]interface{}
-	error := json.NewDecoder(resp.Body).Decode(&result)
-	if error != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	stop_groups := result["stop_groups"].([]interface{})
-	firstStop := stop_groups[0].(map[string]interface{})
-	stopID := firstStop["id"].(string)
-
-	//retrieve data
-
+	//retrieve departures
 	req1 := fmt.Sprintf(
 		"https://realtime-api.trafiklab.se/v1/departures/%s?key=%s",
 		stopID,

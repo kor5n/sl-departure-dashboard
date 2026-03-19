@@ -27,13 +27,14 @@ func (api *api) mount() http.Handler{
 
 	r.Use(middleware.Timeout(60 * time.Second))
 
-	//r.Route("/v1", func(r chi.Router){
-	r.Get("/health", api.HealthCheckHandler)
-	r.Get("/departures/{name}", api.Departures)
-	r.Get("/dashboard/{index}", api.GetDashboard)
-	r.Delete("/delete-dashboard/{index}", api.DeleteDasboard)
-	r.Post("/add-dashboard/", api.AddDashboard)
-	//})
+	r.Route("/api", func(r chi.Router){
+		r.Get("/health", api.HealthCheckHandler)
+		r.Get("/departures/{name}", api.Departures)
+		r.Get("/dashboard/{index}", api.GetDashboard)
+		r.Delete("/delete-dashboard/{index}", api.DeleteDasboard)
+		r.Post("/add-dashboard/", api.AddDashboard)
+		r.Get("/stop-id/{name}", api.GetStopID)
+	})
 	return r
 }
 

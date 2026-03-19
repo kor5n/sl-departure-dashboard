@@ -1,17 +1,16 @@
 package db
 
 import (
-	//"fmt"
 	"encoding/json"
 	"os"
 	"errors"
 )
 
 type db struct{
-	Name string `json:name`
-	StopId string `json:stopid`
-	Routes []string `json:routes`
-	Times []string `json:times`	
+	Name string `json:"name"`
+	StopId string `json:"stopid"`
+	Routes []string `json:"routes"`
+	Times []string `json:"times"`	
 }
 
 type EmptyStruct struct{}
@@ -89,7 +88,22 @@ func DeleteFromDB(index int)(error){
 	return nil
 }
 
-func Filter(index int)(db, error){
+func IdxSearch(index int)(db, error){
 	records, err := ReadDB()
 	return records[index], err
+}
+
+func Filter(value string)(db, error){
+	data, err := ReadDB()
+	if err != nil{
+		return db{}, err
+	}
+
+	for _, element := range data {
+		if element.StopId == value {
+			return element, nil
+		}
+	}
+
+	return db{}, err
 }

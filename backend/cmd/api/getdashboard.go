@@ -8,6 +8,8 @@ import (
 	"strconv"
 )
 
+//getting dashboard settings
+
 func (api *api) GetDashboard(w http.ResponseWriter, r *http.Request){
 	index := chi.URLParam(r,"index")
 	idx, err := strconv.Atoi(index)
@@ -15,7 +17,7 @@ func (api *api) GetDashboard(w http.ResponseWriter, r *http.Request){
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	dboard, err := db.Filter(idx)
+	dboard, err := db.IdxSearch(idx)
 	if err != nil{
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
