@@ -11,7 +11,7 @@ import (
 //getting dashboard settings
 
 func (api *api) GetDashboard(w http.ResponseWriter, r *http.Request){
-	index := chi.URLParam(r,"index")
+	index := chi.URLParam(r,"index") //index inside database
 	idx, err := strconv.Atoi(index)
 	if err!=nil{
 		http.Error(w, err.Error(), http.StatusBadRequest)

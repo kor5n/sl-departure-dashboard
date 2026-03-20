@@ -29,11 +29,12 @@ func (api *api) mount() http.Handler{
 
 	r.Route("/api", func(r chi.Router){
 		r.Get("/health", api.HealthCheckHandler)
-		r.Get("/departures/{name}", api.Departures)
+		r.Get("/departures/{id}", api.Departures)
 		r.Get("/dashboard/{index}", api.GetDashboard)
 		r.Delete("/delete-dashboard/{index}", api.DeleteDasboard)
 		r.Post("/add-dashboard/", api.AddDashboard)
 		r.Get("/stop-id/{name}", api.GetStopID)
+		r.Get("/search-stop/{query}", api.Liststops)
 	})
 	return r
 }
