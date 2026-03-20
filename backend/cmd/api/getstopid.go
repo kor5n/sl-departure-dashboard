@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"fmt"
 	"encoding/json"
+	"strings"
 )
 
 func (api *api) GetStopID(w http.ResponseWriter, r *http.Request){
@@ -26,9 +27,12 @@ func (api *api) GetStopID(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
+	new_name := strings.ReplaceAll(name, " ", "_")
+	log.Println(new_name)
+
 	req := fmt.Sprintf(
 		"https://realtime-api.trafiklab.se/v1/stops/name/%s?key=%s",
-		url.PathEscape(name),
+		url.PathEscape(new_name),
 		api_key,
 	) 
 
