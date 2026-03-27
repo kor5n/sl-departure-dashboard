@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+ul{
+    list-style-type: none;
+}
+
 header{
     display: flex;
     justify-content: center;
@@ -78,7 +82,11 @@ a{
 }
 
 .form-buf{
+    display: flex;
     margin-bottom: 5%;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5%;
 }
 
 .form-label{
@@ -212,4 +220,20 @@ input[type="submit"]{
 
 .back-href{
     color: lightslategrey;
+}
+
+#dropdown{
+    display: block;
+    border: 1px solid grey;
+    font-size: 1.5em;
+}
+
+.dropdown-op{
+    border-top: 0.5px solid grey;
+    border-bottom: 0.5px solid grey;
+}
+.dropdown-op:hover{
+    background-color: cornflowerblue;
+    color: whitesmoke;
+    cursor: pointer;
 }
