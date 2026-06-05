@@ -20,7 +20,7 @@ func contains[T comparable](arr []T, target T) bool {
 }
 
 func (api *api) Liststops(w http.ResponseWriter, r *http.Request){
-	err := godotenv.Load("../../.env")
+	err := godotenv.Load("../../../.env")
 	if err != nil{
 		log.Println("Could not retrieve .env file")
 		http.Error(w, err.Error(), http.StatusInternalServerError)
