@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"errors"
+	"fmt"
 )
 
 type db struct{
@@ -15,12 +16,29 @@ type db struct{
 
 type EmptyStruct struct{}
 
-/*func fileExists(path string) bool {
-    _, err := os.Stat(path)
-    return !os.IsNotExist(err)
-}*/
+func DBExists()(bool,error){
+    _, err := os.Stat("db.json")
+	if !os.IsNotExist(err) == false{
+		err := os.WriteFile("db.json", []byte("{}"), 0755)
+		if err != nil {
+			fmt.Printf("Uable to create db", err)
+			return false, err
+		}
+		return false, nil
+	}
+	return true, nil
+}
 
 func ReadDB()([]db, error){
+	isdb, err := DBExists()
+	if isdb != true || err != nil{
+		if err != nil{
+			return nil, err
+		}else if err == nil{
+			return nil, errors.New("Database is empty")
+		}
+	}
+	
 	data, err :=os.ReadFile("db.json")
 	if err != nil{
 		return nil, err
@@ -37,6 +55,8 @@ func ReadDB()([]db, error){
 }
 
 func WriteToDB(name string,stopid string, routes []string, times []string)(error){
+	_, err := DBExists()
+
 	newObject := db{
 		Name: name,
 		StopId: stopid,
