@@ -19,7 +19,7 @@ type EmptyStruct struct{}
 func DBExists()(bool,error){
     _, err := os.Stat("db.json")
 	if !os.IsNotExist(err) == false{
-		err := os.WriteFile("db.json", []byte("{}"), 0755)
+		err := os.WriteFile("db.json", []byte("{}"), 0664)
 		if err != nil {
 			fmt.Printf("Uable to create db", err)
 			return false, err
