@@ -5,15 +5,21 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-
+	"strings"
 	"github.com/go-chi/chi/v5"
 )
+
+var filteredStrings = []string{" T-bana"}
 
 func (api *api) GetLines(w http.ResponseWriter, r *http.Request){
 	name := chi.URLParam(r, "name")
 	if name == ""{
 		http.Error(w, "missing stop name", http.StatusBadRequest)
 		return
+	}
+
+	for _, filter := range filteredStrings{
+		name = strings.ReplaceAll(name, filter, "")
 	}
 
 	log.Printf("Searching... " + name)
