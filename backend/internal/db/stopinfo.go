@@ -5,7 +5,6 @@ import (
 	"errors"
 	"os"
 	"slices"
-	"strings"
 )
 
 var ErrorStopNotFound = errors.New("No stop found")
@@ -37,7 +36,7 @@ func LinesByName(stop_name string)([]string, error){
 
 	var foundLines []string
 	for _,stop := range stops{
-		if strings.Contains(stop.StopName, stop_name){
+		if stop.StopName == stop_name{
 			for _, route := range stop.Routes{
 				if !slices.Contains(foundLines, route.Line){
 					foundLines = append(foundLines, route.Line)
