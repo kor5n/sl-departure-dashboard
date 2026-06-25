@@ -1,16 +1,17 @@
 package main
 
 import (
-	"encoding/json"
-	"net/http"
 	"backend/internal/db"
+	"encoding/json"
+	"log"
+	"net/http"
 )
 
 type Request struct {
 	Name string `json:name`
     StopId   string   `json:"stopid"`
     Routes []string `json:"routes"`
-    Times   []string   `json:"time"`
+    Times   []string   `json:"times"`
 }
 
 
@@ -23,6 +24,7 @@ func (api *api)AddDashboard(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
+	log.Println(req)
 	err = db.WriteToDB(req.Name,req.StopId, req.Routes, req.Times)
 	if err != nil{
 		http.Error(w, err.Error(), http.StatusInternalServerError)

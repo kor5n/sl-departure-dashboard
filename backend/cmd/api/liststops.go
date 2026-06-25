@@ -59,10 +59,7 @@ func (api *api) Liststops(w http.ResponseWriter, r *http.Request){
 		w.WriteHeader(http.StatusNoContent)
 	}
 
-	log.Println(stops, "stop")
-
 	for _, stop := range stops{
-		log.Println(stop.(map[string]interface{}), "stop1")
 		s := stop.(map[string]interface{})
 		if contains(stop_names, s["name"].(string)) == false{
 			stop_names = append(stop_names, s["name"].(string) + "|" + s["id"].(string))
