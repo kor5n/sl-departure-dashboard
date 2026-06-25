@@ -1,6 +1,8 @@
 const inputField = document.querySelector("#station-input");
 const dropDown = document.querySelector("#dropdown");
 const linesField = document.querySelector("#dashboard-filter")
+const form = document.querySelector("form");
+let savedStation;
 
 inputField.addEventListener("input", async () =>{
     if (inputField.value.length > 4){
@@ -15,6 +17,7 @@ inputField.addEventListener("input", async () =>{
                 dropElement.textContent = data[i].split("|")[0];
                 dropDown.appendChild(dropElement);
                 dropElement.addEventListener("click", async () =>{
+                    savedStation = data[i];
                     const call = await fetch("http://127.0.0.1:8080/api/get-lines/" + data[i].split("|")[0]);
                     if (call.ok){
                         const lines = await call.json();
@@ -25,7 +28,7 @@ inputField.addEventListener("input", async () =>{
 
                             const checkbox = document.createElement("input");
                             checkbox.setAttribute("type", "checkbox");
-                            checkbox.setAttribute("name", "line");
+                            checkbox.setAttribute("name", lines[i]);
                             lineBox.appendChild(checkbox);
 
                             const label = document.createElement("label");
@@ -37,7 +40,8 @@ inputField.addEventListener("input", async () =>{
                         }
                         
                     }else{
-                        window.alert(await call.text);
+                        const error = await call.text();
+                        window.alert(error);
                     }
                 });
             }
@@ -45,4 +49,49 @@ inputField.addEventListener("input", async () =>{
             window.alert(await resp.text);
         }
     }  
+});
+
+form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const data = Object.fromEntries(formData.entries());
+
+    let keys = Object.keys(data)
+
+    let week = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    let times = [];
+    for (let i = 0; i<week.length;i++){
+        if (keys.includes(week[i])){
+            times.push(week[i] + "-" +data[week[i]+"1"]+"-"+data[week[i]+"2"]);
+        }
+        delete data[week[i]+"1"];
+        delete data[week[i]+"2"];
+        delete data[week[i]];
+    }
+
+    console.log(data);
+    keys = Object.keys(data);
+
+    console.log(times);
+    const req = await fetch("http://127.0.0.1:8080/api/add-dashboard/", {
+        method: "POST",
+        headers: {
+            "Content-Type":"application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({
+            name:savedStation.split("|")[0],
+            stopid: savedStation.split("|")[1],
+            routes: keys,
+            times: times
+        })
+    });
+
+    const resp = await req.text();
+    if (req.ok){
+        window.location.pathname = "/frontend/index.html";
+    }else{
+        window.alert(resp)
+    }
 });
