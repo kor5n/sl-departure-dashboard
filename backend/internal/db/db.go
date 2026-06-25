@@ -5,6 +5,7 @@ import (
 	"os"
 	"errors"
 	"fmt"
+	"log"
 )
 
 type db struct{
@@ -16,30 +17,40 @@ type db struct{
 
 type EmptyStruct struct{}
 
-func DBExists()(bool,error){
-    _, err := os.Stat("db.json")
-	if !os.IsNotExist(err) == false{
-		err := os.WriteFile("db.json", []byte("{}"), 0664)
+var DB_PATH string = "../../internal/db/db.json"
+
+func DBExists() (bool, error) {
+	_, err := os.Stat(DB_PATH)
+
+	if os.IsNotExist(err) {
+		err := os.WriteFile(DB_PATH, []byte("[]"), 0664)
 		if err != nil {
-			fmt.Printf("Uable to create db", err)
+			fmt.Printf("Unable to create db: %v\n", err)
 			return false, err
 		}
 		return false, nil
 	}
+
+	if err != nil {
+		return false, err
+	}
+
 	return true, nil
 }
 
 func ReadDB()([]db, error){
 	isdb, err := DBExists()
-	if isdb != true || err != nil{
-		if err != nil{
-			return nil, err
-		}else if err == nil{
-			return nil, errors.New("Database is empty")
-		}
+	log.Println(isdb)
+	log.Println(err)
+	if err != nil{
+		return nil, err
+	}else if isdb != true{
+		//database empty
+		return nil, nil
+		//return nil, errors.New("Database is empty")
 	}
 	
-	data, err :=os.ReadFile("db.json")
+	data, err :=os.ReadFile(DB_PATH)
 	if err != nil{
 		return nil, err
 	}
@@ -68,6 +79,7 @@ func WriteToDB(name string,stopid string, routes []string, times []string)(error
 	if err != nil{
 		return err
 	}
+	log.Printf("Not reading")
 
 	records = append(records, newObject)
 
@@ -76,7 +88,7 @@ func WriteToDB(name string,stopid string, routes []string, times []string)(error
 		return err
 	}
 
-	os.WriteFile("db.json", updatedData, 0644)
+	os.WriteFile(DB_PATH, updatedData, 0644)
 	return nil
 }
 
@@ -100,7 +112,7 @@ func DeleteFromDB(index int)(error){
 		return err
 	}
 
-	err = os.WriteFile("db.json", updatedData, 0664)
+	err = os.WriteFile(DB_PATH, updatedData, 0664)
 	if err != nil {
 		return err
 	}
