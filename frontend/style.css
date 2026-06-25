@@ -166,11 +166,13 @@ label{
 }
 
 #new-station{
-    width: 15%;
-    height: 50%;
+    height: 70%;
     border: none;
     background: none;
     font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .date-sep{
