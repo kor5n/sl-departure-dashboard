@@ -7,10 +7,9 @@ async function LoadDashboards() {
         dashboardContainer.replaceChildren();
 
         for (let i=0; i<data.length;i++){
-            console.log(data);
             const toggleContainer = document.createElement("div");
-            toggleContainer.classList.add("toggle-container");
-            toggleContainer.setAttribute("onclick", "window.location.assign('dashboard.html')");
+            toggleContainer.className = "toggle-container navigation";
+            toggleContainer.setAttribute("href", "/dashboard?index="+i.toString());
 
             const dashboardTitle = document.createElement("h3")
             dashboardTitle.textContent = data[i].name;
@@ -32,4 +31,4 @@ async function LoadDashboards() {
     }
 }
 
-LoadDashboards()
+LoadDashboards();
