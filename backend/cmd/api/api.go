@@ -26,7 +26,7 @@ func (api *api) mount() http.Handler{
 	r.Use(middleware.Logger)
 
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins: []string{"http://127.0.0.1:3000"},
+		AllowedOrigins: []string{"http://127.0.0.1:8000"},
 		AllowedMethods: []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 		ExposedHeaders: []string{"Link"},
