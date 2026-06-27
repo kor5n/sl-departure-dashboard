@@ -1,0 +1,105 @@
+<header>
+    <h1><a class="back-href" href="/">Dashboard</a></h1>
+</header>
+<main>
+    <div id="create-container">
+        <form>
+            <div class="form-buf">
+                <label class="form-label">Station</label><br>
+                <input id="station-input" placeholder="Type station name" type="text" />
+                <ul id="dropdown">
+                    <!--<li class="dropdown-op">Ropsten</li>
+                    <li class="dropdown-op">Ropsten</li>-->
+                </ul>
+            <!--<label class="error-label">Wrongly typed station name</label>-->
+            </div>
+            <div class="form-buf">
+                <label class="form-label">Lines</label>
+                <ul id="dashboard-filter">
+                <!--fill with found data
+                e.g.<input type="radio" name="line">205</input>
+                -->
+                    <li class="lines-list"><input type="checkbox" name="line"/> <label class="line-num">205</label></li>
+                    <li class="lines-list"><input type="checkbox" name="line"/> <label class="line-num">6</label></li>
+                    <li class="lines-list"><input type="checkbox" name="line"/> <label class="line-num">76</label></li>
+                    <li class="lines-list"><input type="checkbox" name="line"/> <label class="line-num">75</label></li>
+                </ul>
+            </div>
+            <div class="form-buf">
+                <label class="form-label">Dates</label>
+            <ul id="time-range">
+                <li class="date-range">
+                    <div class="date-sep">
+                        <label class="day">Mon</label> <input type="checkbox" name="mon">
+                    </div>
+                    <div class="selection">
+                        <input type="time" class="time-input" name="mon1">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="mon2">
+                    </div>
+                </li>
+                <li class="date-range">
+                    <div class="date-sep">
+                    <label class="day">Tue</label> <input type="checkbox" name="tue"></div>
+                    <div class="selection">
+                        <input type="time" class="time-input" name="tue1">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="tue2">
+                    </div>
+                </li>
+                <li class="date-range">
+                    <div class="date-sep">
+                    <label class="day">Wed</label><input type="checkbox" name="wed"></div>
+                    <div class="selection">
+                        <input type="time" class="time-input" name="wed1">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="wed2">
+                    </div>
+                </li>
+                <li class="date-range">
+                    <div class="date-sep">
+                    <label class="day">Thu</label> <input type="checkbox" name="thu"></div>
+                    <div class="selection">
+                        <input type="time" class="time-input" name="thu1">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="thu2">
+                    </div>
+                </li>
+                <li class="date-range">
+                    <div class="date-sep">
+                    <label class="day">Fri</label> <input type="checkbox" name="fri"></div>
+                    <div class="selection">
+                        <input type="time" class="time-input" name="fri1">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="fri2">
+                    </div>
+                </li>
+                <li class="date-range">
+                    <div class="date-sep">
+                    <label class="day">Sat</label> <input type="checkbox" name="sat"></div>
+                    <div class="selection">
+                        <input type="time" class="time-input" name="sat1">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="sat2">
+                    </div>
+                </li>
+                <li class="date-range">
+                    <div class="date-sep">
+                    <label class="day">Sun</label><input type="checkbox" name="sun"></div>
+                    <div class="selection">
+                        <input type="time" class="time-input" name="sun1">
+                        <p class="buf"> - </p>
+                        <input type="time" class="time-input" name="sun2">
+                    </div>
+                </li>
+            </ul>
+            </div>
+            
+            
+            
+            <br>
+            <input type="submit" value="Submit" />
+        </form>
+
+    </div>
+</main>
