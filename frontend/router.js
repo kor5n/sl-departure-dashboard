@@ -40,15 +40,25 @@ const urlRoute = (event) =>{
 
 const urlLocationHandler = async () => {
     const location = window.location.pathname;
-    if (location.length = 0){
+    if (location.length === 0){
         location = "/";
     }
 
     const route =  urlRoutes[location] || urlRoutes[404];
     const html = await fetch(route.html).then((response) => 
     response.text());
-    document.querySelector("body").innerHTML = html + `<script src=${route.js}></script>`;
+    document.querySelector("#app").innerHTML = html;
     document.title = route.title;
+
+    document.getElementById("page-script")?.remove();
+
+    if (route.js){
+        const script = document.createElement("script");
+        script.src = route.js
+        script.id = "page-script"
+        document.body.appendChild(script)
+    }
+ 
 };
 
 window.onpopstate = urlLocationHandler;
