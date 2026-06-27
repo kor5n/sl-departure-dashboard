@@ -10,7 +10,7 @@ import (
 
 //getting dashboard settings
 
-func (api *api) GetDashboard(w http.ResponseWriter, r *http.Request){
+func (api *api) GetDashboard (w http.ResponseWriter, r *http.Request){
 	index := chi.URLParam(r,"index") //index inside database
 	idx, err := strconv.Atoi(index)
 	if err!=nil{

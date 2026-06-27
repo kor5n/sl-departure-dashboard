@@ -45,6 +45,7 @@ func (api *api) mount() http.Handler{
 		r.Get("/stop-id/{name}", api.GetStopID)
 		r.Get("/search-stop/{query}", api.Liststops)
 		r.Get("/get-lines/{name}", api.GetLines)
+		r.Get("/dashboards", api.GetDashboards)
 	})
 	return r
 }
