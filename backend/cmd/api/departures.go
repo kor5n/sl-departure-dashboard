@@ -24,7 +24,7 @@ type Stop struct {
 func (api *api) Departures(w http.ResponseWriter, r *http.Request){
 
 	//get api key from .env
-	err := godotenv.Load("../../../.env")
+	err := godotenv.Load(".env")
 	if err != nil{
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

@@ -7,7 +7,7 @@ let savedStation;
 inputField.addEventListener("input", async () =>{
     if (inputField.value.length > 4){
         //make an API call to search for stations
-        const resp = await fetch("http://127.0.0.1:8080/api/search-stop/" + inputField.value);
+        const resp = await fetch("/api/search-stop/" + inputField.value);
         if (resp.ok){
             const data = await resp.json();
             dropDown.replaceChildren();
@@ -18,7 +18,7 @@ inputField.addEventListener("input", async () =>{
                 dropDown.appendChild(dropElement);
                 dropElement.addEventListener("click", async () =>{
                     savedStation = data[i];
-                    const call = await fetch("http://127.0.0.1:8080/api/get-lines/" + data[i].split("|")[0]);
+                    const call = await fetch("/api/get-lines/" + data[i].split("|")[0]);
                     if (call.ok){
                         const lines = await call.json();
                         linesField.replaceChildren();
@@ -75,7 +75,7 @@ form.addEventListener("submit", async (e)=>{
     keys = Object.keys(data);
 
     console.log(times);
-    const req = await fetch("http://127.0.0.1:8080/api/add-dashboard/", {
+    const req = await fetch("/api/add-dashboard/", {
         method: "POST",
         headers: {
             "Content-Type":"application/json; charset=UTF-8"
@@ -90,7 +90,7 @@ form.addEventListener("submit", async (e)=>{
 
     const resp = await req.text();
     if (req.ok){
-        window.location.pathname = "/frontend/index.html";
+        window.location.assign("/");
     }else{
         window.alert(resp);
     }

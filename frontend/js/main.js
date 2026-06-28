@@ -1,7 +1,7 @@
 const containerDashboard = document.querySelector("#dashboard-container");
 
 async function LoadDashboards() {
-    const response = await fetch("http://127.0.0.1:8080/api/dashboards");
+    const response = await fetch("/api/dashboards");
     if (response.ok){
         const data = await response.json();
         containerDashboard.replaceChildren();

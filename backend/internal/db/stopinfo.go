@@ -22,7 +22,7 @@ type Stop struct{
 }
 
 func LinesByName(stop_name string)([]string, error){
-	data, err:= os.ReadFile("../../internal/db/stop_info.json")
+	data, err:= os.ReadFile("internal/db/stop_info.json")
 	if err != nil{
 		return nil, err
 	}

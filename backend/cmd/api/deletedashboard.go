@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net/http"
 	"backend/internal/db"
-	"github.com/go-chi/chi/v5"
+	"net/http"
 	"strconv"
+	"github.com/go-chi/chi/v5"
 )
 
 func (api *api)DeleteDasboard(w http.ResponseWriter, r *http.Request){

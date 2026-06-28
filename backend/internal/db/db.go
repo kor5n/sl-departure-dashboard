@@ -16,7 +16,7 @@ type db struct{
 
 type EmptyStruct struct{}
 
-var DB_PATH string = "../../internal/db/db.json"
+var DB_PATH string = "internal/db/db.json"
 
 func DBExists() (bool, error) {
 	_, err := os.Stat(DB_PATH)

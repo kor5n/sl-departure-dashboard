@@ -1,15 +1,16 @@
 const dashboardContainer = document.querySelector("#dashboard-container");
 const params = new URLSearchParams(window.location.search);
 const index = params.get("index");
+let dashboard;
 
 const LoadDashboard = async () =>{
-    const response = await fetch("http://127.0.0.1:8080/api/dashboard/"+index);
+    const response = await fetch("/api/dashboard/"+index);
     if (response.ok){
-        const data = await response.json();
-        document.title = data.name + " Dashboard";
-        document.querySelector("#stop-name").textContent = data.name;
-        UpdateDashboard(data["stopid"]);
-        setInterval(() => UpdateDashboard(data["stopid"]), 20000);
+        dashboard = await response.json();
+        document.title = dashboard.name + " Dashboard";
+        document.querySelector("#stop-name").textContent = dashboard.name;
+        UpdateDashboard(dashboard["stopid"]);
+        setInterval(() => UpdateDashboard(dashboard["stopid"]), 20000);
 
     }else{
         const error = await response.text();
@@ -17,14 +18,18 @@ const LoadDashboard = async () =>{
     }
 };
 
-const UpdateDashboard = async (id) => {
-    const resp = await fetch("http://127.0.0.1:8080/api/departures/"+ +id);
+const UpdateDashboard = async () => {
+    const resp = await fetch("/api/departures/"+ +dashboard.stopid);
     if (resp.ok){
         const data = await resp.json();
         dashboardContainer.replaceChildren();
 
         for (let i = 0; i<data.length; i++){
             if (data[i]["canceled"]){
+                continue;
+            }
+
+            if (!dashboard.routes.includes(data[i]["route"])){
                 continue;
             }
             const departure = document.createElement("div");
@@ -103,7 +108,7 @@ document.querySelector("#rm-btn").addEventListener("click", ()=>{
 });
 
 document.querySelector("#yes").addEventListener("click", async () =>{
-    const req = await fetch("http://127.0.0.1:8080/api/delete-dashboard/" + index, {method: "DELETE"});
+    const req = await fetch("/api/delete-dashboard/" + index, {method: "DELETE"});
     const msg = await req.text();
     window.alert(msg);
     if (req.ok){

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
@@ -12,4 +11,298 @@
     </div>
 </body>
 <script src="router.js"></script>
+<style>
+    *{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+    text-align: center;
+}
+
+ul{
+    list-style-type: none;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2%;
+}
+
+#dashboard-heading{
+    text-align: center;
+    grid-area: dashboard-heading;
+}
+
+#dashboard-header{
+    display: grid;
+    grid-template-areas: ". dashboard-heading rm-btn";
+    grid-template-columns: 1fr 5fr 1fr;
+    align-items: center;
+}
+
+main{
+    margin-top: 5%;
+}
+
+#create-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display: block;
+}
+
+.time-input{
+    width: 30px;
+    display: block
+}
+
+#day-list{
+
+}
+.buf{
+    text-align: center;
+    font-size: xx-large;
+
+}
+.date-range{
+    display: inline-block;
+    height: 8vh;
+    width: 30%;
+    margin-top: 10%;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#dashboard-container{
+    display: block;
+}
+
+#dashboard-filter{
+    display: flex;
+    gap: 10px;
+    background-color: grey;
+    border-radius: 4px;
+    margin-top: 2%;
+    padding: 2%;
+    font-size: 1.5em;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.lines-list{
+    display: inline-flex;
+    gap: 5px;
+}
+
+.form-buf{
+    display: flex;
+    margin-bottom: 5%;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.form-label{
+    font-size: 2em;
+}
+
+input{
+    margin-top: 2%;
+    padding: 0;
+    font-size: 1.5em;
+}
+
+input[type="checkbox"]{
+    scale: 1.5;
+    margin: 2%;
+}
+
+#time-range{
+    margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+label{
+    color: dodgerblue;
+}
+
+.line-num{
+    color: black;
+}
+
+.day{
+    color: black;
+    font-size: 1.5em;
+}
+
+.toggle-container{
+    padding: 1%;
+    border: 1px solid black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 8vh;
+    align-items: center;
+}
+
+.filter-label{
+    display: inline-block;
+}
+
+.filter-container{
+    display: inline-block;
+    color: blue;
+    border: 1px solid;
+    width: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-width: 70%;
+    width: 20%;
+    height: max-content;
+ }
+
+.filter-container:hover{
+    width: max-content;
+    overflow-y: visible;
+    height: 100%;
+    word-break: break-all;
+}
+
+#new-station{
+    height: 70%;
+    border: none;
+    background: none;
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-sep{
+    display: flex;
+    justify-content: space-between;
+}
+
+.selection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="time"]:hover{
+    color: blue;
+    background-color: grey;
+}
+
+input[type="submit"]{
+    background-color: whitesmoke;
+    border: 2px solid darkred;
+    font-size: xx-large;
+    border-radius: 6px;
+    width: 50%;
+}
+
+.departure{
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
+    align-items: center;
+    border: 1px solid;
+}
+.dest-container{
+    display: flex;
+}
+.line-label, .dest-label{
+    text-align: left;
+}
+.line-label{
+    background-color: red;
+    border-radius: 6px;
+    width: fit-content;
+    margin-right: 5%
+}
+.alerts{
+    width: max-content;
+}
+
+.back-href{
+    color: lightslategrey;
+}
+
+#dropdown{
+    display: block;
+    border: 1px solid grey;
+    font-size: 1.5em;
+}
+
+.dropdown-op{
+    border-top: 0.5px solid grey;
+    border-bottom: 0.5px solid grey;
+}
+.dropdown-op:hover{
+    background-color: cornflowerblue;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+#rm-btn{
+    background-color: red;
+    font-weight: 700;
+    padding: 1%;
+    color:white;
+    border: 1px solid grey;
+    border-radius: 6px;
+    grid-area: rm-btn;
+    height: 100%;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#rm-btn:hover{
+    cursor: pointer;
+}
+
+#confirm-panel{
+    position: absolute;
+    display: none;
+    background-color: sandybrown;
+    z-index: 2;
+    padding: 5%;
+    flex-direction: column;
+    gap: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ans-btn{
+    padding: 4%;
+    color: white;
+    font-weight: 700;
+}
+
+.ans-btn:hover{
+    scale: 1.1;
+}
+
+#yes{
+    background-color: green;
+}
+
+#no{
+    background-color: red;
+}
+</style>
 </html>

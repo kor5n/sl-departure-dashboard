@@ -13,7 +13,7 @@ import (
 )
 
 func (api *api) GetStopID(w http.ResponseWriter, r *http.Request){
-	err := godotenv.Load("../../../.env")
+	err := godotenv.Load(".env")
 	if err != nil{
 		log.Println(".env file couldn't be found")
 	}
