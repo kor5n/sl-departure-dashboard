@@ -92,6 +92,6 @@ form.addEventListener("submit", async (e)=>{
     if (req.ok){
         window.location.pathname = "/frontend/index.html";
     }else{
-        window.alert(resp)
+        window.alert(resp);
     }
 });
