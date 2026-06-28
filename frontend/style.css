@@ -12,14 +12,20 @@ ul{
 header{
     display: flex;
     justify-content: center;
+    text-align: center;
     margin-top: 2%;
 }
 
+#dashboard-heading{
+    text-align: center;
+    grid-area: dashboard-heading;
+}
+
 #dashboard-header{
-    display: flex;
-    justify-content: center;
-    border: 1px solid;
-    gap: 1rem;
+    display: grid;
+    grid-template-areas: ". dashboard-heading rm-btn";
+    grid-template-columns: 1fr 5fr 1fr;
+    align-items: center;
 }
 
 main{
@@ -239,5 +245,23 @@ input[type="submit"]{
 .dropdown-op:hover{
     background-color: cornflowerblue;
     color: whitesmoke;
+    cursor: pointer;
+}
+
+#rm-btn{
+    background-color: red;
+    font-weight: 700;
+    padding: 1%;
+    color:white;
+    border: 1px solid grey;
+    border-radius: 6px;
+    grid-area: rm-btn;
+    height: 100%;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#rm-btn:hover{
     cursor: pointer;
 }
