@@ -1,10 +1,10 @@
-const dashboardContainer = document.querySelector("#dashboard-container");
+const containerDashboard = document.querySelector("#dashboard-container");
 
 async function LoadDashboards() {
     const response = await fetch("http://127.0.0.1:8080/api/dashboards");
     if (response.ok){
         const data = await response.json();
-        dashboardContainer.replaceChildren();
+        containerDashboard.replaceChildren();
 
         for (let i=0; i<data.length;i++){
             const toggleContainer = document.createElement("div");
@@ -23,7 +23,7 @@ async function LoadDashboards() {
 
             toggleContainer.appendChild(dashboardTitle);
             toggleContainer.appendChild(filterLabel);
-            dashboardContainer.appendChild(toggleContainer);
+            containerDashboard.appendChild(toggleContainer);
         }
     }else{
         const error = await response.text();

@@ -1,8 +1,8 @@
 const dashboardContainer = document.querySelector("#dashboard-container");
+const params = new URLSearchParams(window.location.search);
+const index = params.get("index");
 
 const LoadDashboard = async () =>{
-    const params = new URLSearchParams(window.location.search);
-    const index = params.get("index");
     const response = await fetch("http://127.0.0.1:8080/api/dashboard/"+index);
     if (response.ok){
         const data = await response.json();
@@ -93,3 +93,20 @@ const CalculateTime = (departure) => {
 };
 
 LoadDashboard();
+
+document.querySelector("#no").addEventListener("click", ()=>{
+    document.querySelector("#confirm-panel").style.display = "none";
+});
+
+document.querySelector("#rm-btn").addEventListener("click", ()=>{
+    document.querySelector("#confirm-panel").style.display = "flex";
+});
+
+document.querySelector("#yes").addEventListener("click", async () =>{
+    const req = await fetch("http://127.0.0.1:8080/api/delete-dashboard/" + index, {method: "DELETE"});
+    const msg = await req.text();
+    window.alert(msg);
+    if (req.ok){
+        window.location.assign("/");
+    }
+});
