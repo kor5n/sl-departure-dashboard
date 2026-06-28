@@ -5,7 +5,6 @@ import (
 	"os"
 	"errors"
 	"fmt"
-	"log"
 )
 
 type db struct{
@@ -40,8 +39,6 @@ func DBExists() (bool, error) {
 
 func ReadDB()([]db, error){
 	isdb, err := DBExists()
-	log.Println(isdb)
-	log.Println(err)
 	if err != nil{
 		return nil, err
 	}else if isdb != true{
@@ -79,7 +76,6 @@ func WriteToDB(name string,stopid string, routes []string, times []string)(error
 	if err != nil{
 		return err
 	}
-	log.Printf("Not reading")
 
 	records = append(records, newObject)
 
@@ -103,9 +99,7 @@ func DeleteFromDB(index int)(error){
 		return err
 	}
 
-	slice := records[:]
-	slice = append(slice[:index], slice[index+1:]...)
-	copy(records[:], slice)
+	records = append(records[:index], records[index+1:]...)
 
 	updatedData, err := json.MarshalIndent(records, "", "  ")
 	if err != nil {
