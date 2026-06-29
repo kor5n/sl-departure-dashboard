@@ -1,5 +1,10 @@
 const dashboardContainer = document.querySelector("#dashboard-container");
 const params = new URLSearchParams(window.location.search);
+
+if (params.size == 0){
+    window.alert("No dashboard specified");
+    window.history.back();
+}
 const index = params.get("index");
 let dashboard;
 
@@ -15,6 +20,7 @@ const LoadDashboard = async () =>{
     }else{
         const error = await response.text();
         window.alert(error);
+        window.history.back();
     }
 };
 

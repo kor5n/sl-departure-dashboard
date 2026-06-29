@@ -116,6 +116,18 @@ func DeleteFromDB(index int)(error){
 
 func IdxSearch(index int)(db, error){
 	records, err := ReadDB()
+	if err != nil{
+		return db{}, err
+	}
+
+	if len(records) <= 0{
+		return db{}, errors.New("Database empty")
+	}
+
+	if index-1 > len(records){
+		return db{}, errors.New("Array index out of range")
+	}
+
 	return records[index], err
 }
 
