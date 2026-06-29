@@ -3,6 +3,7 @@ const dropDown = document.querySelector("#dropdown");
 const linesField = document.querySelector("#dashboard-filter")
 const form = document.querySelector("form");
 let savedStation;
+let lines = [];
 
 inputField.addEventListener("input", async () =>{
     if (inputField.value.length > 4){
@@ -18,9 +19,16 @@ inputField.addEventListener("input", async () =>{
                 dropDown.appendChild(dropElement);
                 dropElement.addEventListener("click", async () =>{
                     savedStation = data[i];
-                    const call = await fetch("/api/get-lines/" + data[i].split("|")[0]);
+                    const call = await fetch("/api/departures/" + data[i].split("|")[1]);
+                    lines = [];
                     if (call.ok){
-                        const lines = await call.json();
+                        const dep = await call.json();
+                        for (let i=0; i<dep.length;i++){
+                            if(lines.includes(dep[i]["route"])){
+                                continue;
+                            }
+                            lines.push(dep[i]["route"]);
+                        }
                         linesField.replaceChildren();
                         for (let i = 0; i<lines.length; i++){
                             const lineBox = document.createElement("li");
