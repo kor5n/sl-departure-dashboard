@@ -27,6 +27,11 @@ const urlRoutes = {
         "html":"html/dashboard.html",
         "js":"js/dashboard.js",
         "title": "{Name} Dashboard"
+    },
+    "/live":{
+        "html":"html/live.html",
+        "js":"js/live.js",
+        "title":"Live Dashboards"
     }
 };
 
@@ -54,8 +59,9 @@ const urlLocationHandler = async () => {
 
     if (route.js){
         const script = document.createElement("script");
-        script.src = route.js
+        script.src = "/"+route.js
         script.id = "page-script"
+        script.type = "module";
         document.body.appendChild(script)
     }
  

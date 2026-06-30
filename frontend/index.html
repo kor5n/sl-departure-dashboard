@@ -27,7 +27,7 @@ header{
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 2%;
+    padding: 2%;
 }
 
 #dashboard-heading{
@@ -78,6 +78,10 @@ form{
 a{
     text-decoration: none;
     color: black;
+}
+
+a:hover{
+    cursor: pointer;
 }
 
 #dashboard-container{
@@ -303,6 +307,36 @@ input[type="submit"]{
 
 #no{
     background-color: red;
+}
+
+#live-link{
+    margin-left: auto;
+    grid-area: rm-btn;
+    font-weight: 800;
+    color: cornflowerblue;
+}
+
+#sl-header{
+    grid-area: dashboard-heading;
+}
+
+#dashboard-blobs{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px,160px));
+    grid-template-rows: repeat(auto-fit,minmax(80px, 120px));
+    gap: 1rem;
+    height: 100vh;
+    justify-content: center;
+}
+
+.blob{
+    display: flex;
+    border: 2px solid grey;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
 }
 </style>
 </html>
