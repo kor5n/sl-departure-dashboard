@@ -9,6 +9,6 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o server ./cmd/api/
 
-EXPOSE 8080
+EXPOSE 9000
 
 CMD ["./server"]
