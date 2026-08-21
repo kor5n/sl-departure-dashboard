@@ -6,7 +6,7 @@ import (
 
 func main(){
 	cfg := config{
-		addr: ":8080",
+		addr: ":9000",
 	}
 
 	api := &api{
