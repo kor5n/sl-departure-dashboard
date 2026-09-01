@@ -9,7 +9,11 @@ export const CalculateTime = (departure) => {
     const depSeconds = +depTime[0] * 3600 + +depTime[1]*60 + +depTime[2];
     const curSeconds = currentDate.getHours() * 3600 +currentDate.getMinutes() * 60 +currentDate.getSeconds();
     const timeDiff = depSeconds - curSeconds;
-    const minutes = Math.round(timeDiff/60);
+    let minutes = Math.round(timeDiff/60);
+
+    if (minutes < 0){
+	minutes += 1440;
+    }
 
     return minutes.toString() + " minutes";
 };

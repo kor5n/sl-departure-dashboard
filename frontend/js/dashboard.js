@@ -1,3 +1,5 @@
+import { CalculateTime } from "./modules.js";
+
 const dashboardContainer = document.querySelector("#dashboard-container");
 const params = new URLSearchParams(window.location.search);
 
