@@ -36,6 +36,9 @@ const LoadBoards = async () =>{
                 const deps = await req.json();
                 blobContainer.replaceChildren();
                 for (let j = 0; j<deps.length;j++){
+		    if (data[i]["canceled"]){
+                	continue;
+           	    }
 
                     if (!data[i]["routes"].includes(deps[j]["route"])){
                         continue;
@@ -66,7 +69,7 @@ const LoadBoards = async () =>{
 
                     blob.appendChild(nextStop);
                     blobContainer.appendChild(blob);
-                    break;
+		    //break; WHY?!
                 }
             }else{
                 const error = await req.json();
