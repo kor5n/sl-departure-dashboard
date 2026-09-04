@@ -36,7 +36,7 @@ const LoadBoards = async () =>{
                 const deps = await req.json();
                 blobContainer.replaceChildren();
                 for (let j = 0; j<deps.length;j++){
-		    if (data[i]["canceled"]){
+		    if (deps[j]["canceled"]){
                 	continue;
            	    }
 
